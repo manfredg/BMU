@@ -70,8 +70,6 @@ ggseg <- function (.data = NULL, atlas = "dkt", position = "dispersed",
 environment(ggseg)=environment(ggseg::ggseg)
 
 plotCortex <- function(x,atlas='glassersub',colormap='jet',position='dispersed',limits=c(NA,NA),alpha=.8,title='',cbtitle=NULL,cbpos='bottom',col='white',lwd=.1,...) {
-    ## l0=labs[rrperm0]
-    ## results = data.frame(cbind(hemi=ifelse(grepl('L_',l0),'left','right'),area=gsub('[LR]_','',l0),em=x[rrperm0]),stringsAsFactors=F)
     l0=names(x)
     if(atlas%in%'aseg') {
         l0=tolower(l0)
@@ -96,6 +94,4 @@ plotCortexLeft <- function(x,...) {
     names(x)=l0
     l00=unique(gsub('[LR]_','',l0))
     plotCortex(rowMeans(cbind(x[paste0('L_',l00)],x[paste0('R_',l00)]),na.rm=T),hemi='left',...)
-    ## N2=length(x)/2
-    ## plotCortex((x[1:N2]+x[N2+1:N2])/2,hemi='left',...)
 }
